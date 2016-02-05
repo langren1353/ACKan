@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 static class Program
 {
-    public static String DEBUG_URL = "http://abscoin.iask.in";
+     public static String DEBUG_URL = "http://abscoin.iask.in";
     public static String DEBUG_MUTI_URL = "http://abscoin.iask.in";
     //public static String DEBUG_URL = "http://115.159.6.78";
     //public static String DEBUG_MUTI_URL = "http://115.159.6.78";
