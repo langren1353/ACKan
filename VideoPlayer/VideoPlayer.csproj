@@ -95,20 +95,20 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.APlayer3Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AxInterop.APlayer3Lib.dll</HintPath>
+    <Reference Include="AxInterop.APlayer3Lib">
+      <HintPath>common\AxInterop.APlayer3Lib.dll</HintPath>
     </Reference>
     <Reference Include="ColorSlider">
-      <HintPath>..\..\89346489ColorSlider\ColorSlider\ColorSliderTest\bin\Release\ColorSlider.dll</HintPath>
+      <HintPath>common\ColorSlider.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.APlayer3Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>bin\Debug\Interop.APlayer3Lib.dll</HintPath>
+    <Reference Include="Interop.APlayer3Lib">
+      <HintPath>common\Interop.APlayer3Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ATLLib">
+      <HintPath>common\Interop.ATLLib.dll</HintPath>
     </Reference>
     <Reference Include="PHLTrackBar">
-      <HintPath>..\..\C#多功能滑块(带进度条)\多功能滑块\PHLTrackBar.dll</HintPath>
+      <HintPath>common\PHLTrackBar.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Management" />
@@ -205,6 +205,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Fakes Include="Fakes\AxInterop.APlayer3Lib.fakes" />
     <None Include="Resources\app.config">
       <SubType>Designer</SubType>
     </None>
