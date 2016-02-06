@@ -35,8 +35,16 @@ namespace VideoPlayer
         AxPlayer _Player;
         private int oldState = -1;
         private int tryCount = 0;
-        private String defaultHost = "http://xfcd.ctfs.ftn.qq.com"; // 保留传递过来的url值，用于替换
-        private String[] otherHost = new String[] { "http://sh.ctfs.ftn.qq.com", "http://hz.ftn.qq.com", "http://cd.ctfs.ftn.qq.com", "http://tj.ctfs.ftn.qq.com", "http://xfsh.ctfs.ftn.qq.com", "http://xfxa.ctfs.ftn.qq.com", "http://xa.ctfs.ftn.qq.com" , "http://sz.ctfs.ftn.qq.com" };
+        public static String defaultHost = "http://sh.ctfs.ftn.qq.com"; // 保留传递过来的url值，用于替换
+        private String[] otherHost = new String[] {
+            "http://xfcd.ctfs.ftn.qq.com",
+            "http://hz.ftn.qq.com",
+            "http://cd.ctfs.ftn.qq.com",
+            "http://tj.ctfs.ftn.qq.com",
+            "http://xfsh.ctfs.ftn.qq.com",
+            "http://xfxa.ctfs.ftn.qq.com",
+            "http://xa.ctfs.ftn.qq.com" ,
+            "http://sz.ctfs.ftn.qq.com" };
 
         private String playurl = "";
         private String cookie = "";

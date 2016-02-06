@@ -187,11 +187,13 @@
             // colorSlider2
             // 
             this.colorSlider2.BackColor = System.Drawing.Color.Transparent;
-            this.colorSlider2.BarInnerColor = System.Drawing.Color.DodgerBlue;
+            this.colorSlider2.BarInnerColor = System.Drawing.Color.Gray;
+            this.colorSlider2.BarOuterColor = System.Drawing.Color.Gray;
+            this.colorSlider2.BarPenColor = System.Drawing.Color.Gray;
             this.colorSlider2.BorderRoundRectSize = new System.Drawing.Size(8, 8);
             this.colorSlider2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.colorSlider2.ElapsedInnerColor = System.Drawing.SystemColors.HotTrack;
-            this.colorSlider2.ElapsedOuterColor = System.Drawing.Color.Gold;
+            this.colorSlider2.ElapsedInnerColor = System.Drawing.Color.DarkBlue;
+            this.colorSlider2.ElapsedOuterColor = System.Drawing.Color.MediumBlue;
             this.colorSlider2.LargeChange = ((uint)(5u));
             this.colorSlider2.Location = new System.Drawing.Point(0, 0);
             this.colorSlider2.Name = "colorSlider2";
@@ -225,7 +227,7 @@
             // panelbottom
             // 
             this.panelbottom.BackColor = System.Drawing.Color.Transparent;
-            this.panelbottom.BackgroundImage = global::VideoPlayer.Properties.Resources.bottom;
+            this.panelbottom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelbottom.BackgroundImage")));
             this.panelbottom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelbottom.Controls.Add(this.label3);
             this.panelbottom.Controls.Add(this.label2);
@@ -303,8 +305,8 @@
             // 
             // piclist
             // 
-            this.piclist.ErrorImage = global::VideoPlayer.Properties.Resources.list;
-            this.piclist.Image = global::VideoPlayer.Properties.Resources.list;
+            this.piclist.ErrorImage = ((System.Drawing.Image)(resources.GetObject("piclist.ErrorImage")));
+            this.piclist.Image = ((System.Drawing.Image)(resources.GetObject("piclist.Image")));
             this.piclist.Location = new System.Drawing.Point(758, 6);
             this.piclist.Name = "piclist";
             this.piclist.Size = new System.Drawing.Size(26, 25);
@@ -317,8 +319,8 @@
             // 
             // picsavapic
             // 
-            this.picsavapic.ErrorImage = global::VideoPlayer.Properties.Resources.savepic;
-            this.picsavapic.Image = global::VideoPlayer.Properties.Resources.savepic;
+            this.picsavapic.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picsavapic.ErrorImage")));
+            this.picsavapic.Image = ((System.Drawing.Image)(resources.GetObject("picsavapic.Image")));
             this.picsavapic.Location = new System.Drawing.Point(708, 6);
             this.picsavapic.Name = "picsavapic";
             this.picsavapic.Size = new System.Drawing.Size(25, 25);
@@ -332,8 +334,8 @@
             // 
             // picopen
             // 
-            this.picopen.ErrorImage = global::VideoPlayer.Properties.Resources.open;
-            this.picopen.Image = global::VideoPlayer.Properties.Resources.open;
+            this.picopen.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picopen.ErrorImage")));
+            this.picopen.Image = ((System.Drawing.Image)(resources.GetObject("picopen.Image")));
             this.picopen.Location = new System.Drawing.Point(733, 6);
             this.picopen.Name = "picopen";
             this.picopen.Size = new System.Drawing.Size(25, 25);
@@ -347,8 +349,8 @@
             // 
             // picsound
             // 
-            this.picsound.ErrorImage = global::VideoPlayer.Properties.Resources.sound;
-            this.picsound.Image = global::VideoPlayer.Properties.Resources.sound;
+            this.picsound.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picsound.ErrorImage")));
+            this.picsound.Image = ((System.Drawing.Image)(resources.GetObject("picsound.Image")));
             this.picsound.Location = new System.Drawing.Point(431, 5);
             this.picsound.Name = "picsound";
             this.picsound.Size = new System.Drawing.Size(30, 30);
@@ -361,8 +363,8 @@
             // 
             // picstop
             // 
-            this.picstop.ErrorImage = global::VideoPlayer.Properties.Resources.stop;
-            this.picstop.Image = global::VideoPlayer.Properties.Resources.stop;
+            this.picstop.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picstop.ErrorImage")));
+            this.picstop.Image = ((System.Drawing.Image)(resources.GetObject("picstop.Image")));
             this.picstop.Location = new System.Drawing.Point(243, 8);
             this.picstop.Name = "picstop";
             this.picstop.Size = new System.Drawing.Size(30, 30);
@@ -390,8 +392,8 @@
             // pic_play_pause
             // 
             this.pic_play_pause.BackColor = System.Drawing.Color.Transparent;
-            this.pic_play_pause.ErrorImage = global::VideoPlayer.Properties.Resources.play;
-            this.pic_play_pause.Image = global::VideoPlayer.Properties.Resources.play;
+            this.pic_play_pause.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pic_play_pause.ErrorImage")));
+            this.pic_play_pause.Image = ((System.Drawing.Image)(resources.GetObject("pic_play_pause.Image")));
             this.pic_play_pause.Location = new System.Drawing.Point(328, 3);
             this.pic_play_pause.Name = "pic_play_pause";
             this.pic_play_pause.Size = new System.Drawing.Size(57, 35);
@@ -404,7 +406,7 @@
             // 
             // paneltop
             // 
-            this.paneltop.BackgroundImage = global::VideoPlayer.Properties.Resources.top;
+            this.paneltop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paneltop.BackgroundImage")));
             this.paneltop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.paneltop.Controls.Add(this.pictureBox1);
             this.paneltop.Controls.Add(this.picmin);
@@ -426,8 +428,8 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.ErrorImage = global::VideoPlayer.Properties.Resources.pin;
-            this.pictureBox1.Image = global::VideoPlayer.Properties.Resources.pin;
+            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(686, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -442,8 +444,8 @@
             // 
             this.picmin.BackColor = System.Drawing.Color.Transparent;
             this.picmin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picmin.ErrorImage = global::VideoPlayer.Properties.Resources.min;
-            this.picmin.Image = global::VideoPlayer.Properties.Resources.min;
+            this.picmin.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picmin.ErrorImage")));
+            this.picmin.Image = ((System.Drawing.Image)(resources.GetObject("picmin.Image")));
             this.picmin.Location = new System.Drawing.Point(712, 0);
             this.picmin.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.picmin.Name = "picmin";
@@ -476,8 +478,8 @@
             // 
             this.picmax.BackColor = System.Drawing.Color.Transparent;
             this.picmax.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picmax.ErrorImage = global::VideoPlayer.Properties.Resources.max;
-            this.picmax.Image = global::VideoPlayer.Properties.Resources.max;
+            this.picmax.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picmax.ErrorImage")));
+            this.picmax.Image = ((System.Drawing.Image)(resources.GetObject("picmax.Image")));
             this.picmax.Location = new System.Drawing.Point(734, 0);
             this.picmax.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.picmax.Name = "picmax";
@@ -533,9 +535,9 @@
             // 
             // picclose
             // 
-            this.picclose.BackgroundImage = global::VideoPlayer.Properties.Resources.close;
+            this.picclose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picclose.BackgroundImage")));
             this.picclose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picclose.ErrorImage = global::VideoPlayer.Properties.Resources.close;
+            this.picclose.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picclose.ErrorImage")));
             this.picclose.Location = new System.Drawing.Point(756, 0);
             this.picclose.Name = "picclose";
             this.picclose.Size = new System.Drawing.Size(36, 24);

@@ -62,6 +62,8 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -95,19 +97,21 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.APlayer3Lib">
+    <Reference Include="AxInterop.APlayer3Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>common\AxInterop.APlayer3Lib.dll</HintPath>
     </Reference>
-    <Reference Include="ColorSlider">
+    <Reference Include="ColorSlider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>common\ColorSlider.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.APlayer3Lib">
+    <Reference Include="Interop.APlayer3Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>common\Interop.APlayer3Lib.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ATLLib">
-      <HintPath>common\Interop.ATLLib.dll</HintPath>
-    </Reference>
-    <Reference Include="PHLTrackBar">
+    <Reference Include="PHLTrackBar, Version=1.0.3632.25273, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>common\PHLTrackBar.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -197,14 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Fakes Include="Fakes\AxInterop.APlayer3Lib.fakes" />
     <None Include="Resources\app.config">
       <SubType>Designer</SubType>
@@ -213,6 +212,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -229,6 +233,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Skin\defult\pin.png" />
+    <Content Include="Imgs\bottom.png" />
+    <Content Include="Imgs\close.png" />
+    <Content Include="Imgs\guess.png" />
+    <Content Include="Imgs\list.png" />
+    <Content Include="Imgs\max.png" />
+    <Content Include="Imgs\max2.png" />
+    <Content Include="Imgs\min.png" />
+    <Content Include="Imgs\open.png" />
+    <Content Include="Imgs\pause.png" />
+    <Content Include="Imgs\pin.png" />
+    <Content Include="Imgs\play.png" />
+    <Content Include="Imgs\savepic.png" />
+    <Content Include="Imgs\sound.png" />
+    <Content Include="Imgs\stop.png" />
+    <Content Include="Imgs\top.png" />
     <Content Include="vlc_B_64px_1174125_easyicon.net.ico" />
     <None Include="Resources\play_1.png" />
     <None Include="bin\Debug\Skin\defult\min.png" />
@@ -244,6 +263,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="APlayer3Lib">
+      <Guid>{97830570-35FE-4195-83DE-30E79B718713}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="ATLLib">
       <Guid>{44EC0535-400F-11D0-9DCD-00A0C90391D3}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -252,6 +280,14 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAPlayer3Lib">
+      <Guid>{97830570-35FE-4195-83DE-30E79B718713}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
     </COMReference>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
@@ -264,13 +300,6 @@
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.1.28.3\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.28.3\build\Fody.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

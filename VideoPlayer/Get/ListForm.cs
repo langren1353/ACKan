@@ -53,5 +53,13 @@ namespace VideoPlayer.Get
         {
             this.textBox1.Clear();
         }
+
+        private void textBox1_DoubleClick(object sender, EventArgs e)
+        {
+            String text = Clipboard.GetText();
+            if (!text.Equals("") && text.IndexOf("magnet")>-1) {
+                this.textBox1.Text = text;
+            }
+        }
     }
 }

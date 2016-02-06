@@ -11,7 +11,7 @@ namespace VideoPlayer.Get
     {
         SynchronizationContext _syncContext = null;
         private String TRCode;
-        private String urlPlay = "http://xfcd.ctfs.ftn.qq.com/ftn_handler/CODE?compressed=0&dtype=1&fname=A.";
+        private String urlPlay = Form1.defaultHost + "/ftn_handler/CODE?compressed=0&dtype=1&fname=A.";
         private String requestUrl = Program.DEBUG_MUTI_URL + "/CodeDeal/find2";
         private String[] Fname;
         private String[] Fsize;

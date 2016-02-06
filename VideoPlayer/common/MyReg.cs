@@ -73,13 +73,13 @@ class MyReg
     public static int Reg_GetFirstNum(String source, String regStr)
     {
         String[] list = Reg_GetAllString(source, regStr);
-        if (list[0].Equals("")) return 0;
+        if (list == null) return 0;
         return Int32.Parse(list[0]);
     }
     public static int Reg_GetLastNum(String source, String regStr)
     {
         String[] list = Reg_GetAllString(source, regStr);
-        if (list[0].Equals("")) return 0;
+        if (list == null) return 0;
         return Int32.Parse(list[0]);
     }
 }

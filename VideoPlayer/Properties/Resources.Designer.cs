@@ -83,6 +83,16 @@ namespace VideoPlayer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap guess {
+            get {
+                object obj = ResourceManager.GetObject("guess", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ico {
             get {
                 object obj = ResourceManager.GetObject("ico", resourceCulture);
@@ -116,6 +126,16 @@ namespace VideoPlayer.Properties {
         internal static System.Drawing.Bitmap max {
             get {
                 object obj = ResourceManager.GetObject("max", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap max2 {
+            get {
+                object obj = ResourceManager.GetObject("max2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
