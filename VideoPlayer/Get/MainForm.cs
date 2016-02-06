@@ -82,7 +82,7 @@ namespace WindowsFormsApplication2 {
                 stream.Close();
                 httpResp.Close();
                 //if (HTMLVALUE.IndexOf("对不起，暂时没有关于") > -1) {
-                ?    MessageBox.Show(this, "没有找到相关搜索结果\r\n O_O"); return;
+                //   MessageBox.Show(this, "没有找到相关搜索结果\r\n O_O"); return;
                 //}
                 insetIntoListViewWithHTTPVAULE(HTMLVALUE);
                 //lblStatus.Text = "搜索完成，请低调使用";
