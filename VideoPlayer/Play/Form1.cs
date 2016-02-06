@@ -4,28 +4,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using AxAPlayer3Lib;
 
-///<summary>
 
-///类说明：APlayerDemo
-
-///作用：对APlayer的简单应用
-
-///作者：王龙
-
-///联系QQ:78847023 Email:wanglong126@139.com
-
-///编写日期：2015-08-19  最后更新日期：2015-08-21
-
-///感谢博客园-IT周见智 分享的经验
-
-///感谢开发者论坛各位大大分享的经验
-
-///API说明地址：http://aplayer.open.xunlei.com/
-
-///AD:http://www.diycms.com  http://www.ezu88.com
-
-
-///</summary>
 namespace VideoPlayer
 {
     public partial class Form1 : Form
