@@ -23,6 +23,7 @@ namespace WindowsFormsApplication2 {
         VideoPlayer.Form1 playForm;
         class Alldata{
             public int curIndex;
+            public static int allcount = 0;
             public String size;
             public String name;
             public String location;
@@ -38,7 +39,7 @@ namespace WindowsFormsApplication2 {
             public String cookie;
         }
 
-        Alldata[] alldata = null;
+        Alldata[] alldata = new Alldata[500];
         //String[] size = null;// 大小
         //String[] name = null;// 名称
         //String[] namePlay = null;// 名称
@@ -59,6 +60,7 @@ namespace WindowsFormsApplication2 {
         }
         private void button1_Click(object sender, EventArgs e) {
             this.CiteValue.curIndex = 1;
+            this.allcount = Alldata.allcount = 0;
             doSearchThread();
         }
         public void doSearchThread() { // 避免和主线程(UI)冲突-导致卡顿
@@ -107,9 +109,10 @@ namespace WindowsFormsApplication2 {
             String[] location = CiteValue.regGetLocation(HTML);// 地址
             String[] hot = CiteValue.regGetHot(HTML);// 热度
             String[] time = CiteValue.regGetTime(HTML);// 创建时间
-            allcount = size.Length;
-            alldata = new Alldata[30];
-            for (int i = 0; i < allcount; i++) {
+            
+            
+            Alldata.allcount = size.Length;
+            for (int i = 0; i < size.Length; i++) {
                 alldata[i] = new Alldata();
                 alldata[i].size = size[i];
                 alldata[i].name = name[i];
@@ -132,28 +135,33 @@ namespace WindowsFormsApplication2 {
         }
         public void Sync_LinklableData(Object obj)
         {
-            String[] data = (String[])obj;
-            int index = Int32.Parse(data[0]);
-            int canplay = Int32.Parse(data[1]);
-            String text;
-            switch (canplay) {
-                case -3: //查找资源错误
-                case -2: //资源已经过期
-                case -1: //暂时找不到该资源
-                    text = "无效"; break; 
-                case 1:
-                    text = "点击播放"; break;
-                case 2:
-                    text = "选择播放"; break;
-                default: //未知错误
-                    text = "无效"; break;
+            try {
+                String[] data = (String[])obj;
+                int index = Int32.Parse(data[0]);
+                int canplay = Int32.Parse(data[1]);
+                String text;
+                switch (canplay) {
+                    case -3: //查找资源错误
+                    case -2: //资源已经过期
+                    case -1: //暂时找不到该资源
+                        text = "无效"; break;
+                    case 1:
+                        text = "点击播放"; break;
+                    case 2:
+                        text = "选择播放"; break;
+                    default: //未知错误
+                        text = "无效"; break;
+                }
+                dataGridView1.Rows[index].Cells[6].Value = text;
             }
-            dataGridView1.Rows[index].Cells[6].Value = text;
+            catch (Exception e) {
+                Console.WriteLine(e);
+            }
         }
         public void Sync_ListView(Object obj) {
             //this.listView1.Items.Clear();
             this.dataGridView1.Rows.Clear();
-            for (int i = 0; i < allcount; i++) {
+            for (int i = 0; i < Alldata.allcount; i++) {
                 String[] oneRow = new String[7];
                 oneRow[0] = i+"";
                 oneRow[1] = alldata[i].size;
@@ -595,39 +603,47 @@ namespace WindowsFormsApplication2 {
             listform.Show();
         }
         public void Btn2ListFormDeal(String[] mangnets) {
-            alldata = new Alldata[500];
+            //alldata = new Alldata[500];
             int min = mangnets.Length >= 500 ? 500 : mangnets.Length;
             //if (min > 0) allcount = min;
             for (int i = 0; i < min; i++)
             {
-                alldata[i] = new Alldata();
-                alldata[i].location = "magnet:?xt=urn:btih:"+mangnets[i];
-                alldata[i].curIndex = i;
+                alldata[Alldata.allcount] = new Alldata();
+                alldata[Alldata.allcount].location = "magnet:?xt=urn:btih:"+mangnets[i];
+                alldata[Alldata.allcount].curIndex = Alldata.allcount;
                 Thread athread = new Thread(ThreadGetAllPlayAddr2);
-                athread.Start(i);
+                athread.Start(Alldata.allcount);
+                Alldata.allcount++;
             }
         }
         public void ThreadGetAllPlayAddr2(Object obj) {
-            int i = (int)obj;
-           
-            String magnet = alldata[i].location;
-            String code = MyReg.Reg_GetFirstString(magnet, "(?<=btih:)([\\d\\w]{40})");
-            Console.WriteLine(code);
-            String HTML = MyHttp.myHttpStringPost(requestUrl, "UTF-8", "CODE=" + code);
-            //Thread.Sleep(50);
+            try {
+                int i = (int)obj;
 
-            int canPlay = MyReg.Reg_GetFirstNum(HTML, "A=(.*)?\\r\\n");
-            alldata[i].curIndex = allcount++;
-            alldata[i].namePlay = HttpUtility.UrlDecode(MyReg.Reg_GetFirstString(HTML, "B=(.*)?\\r\\n"));
-            alldata[i].codeUrl = myDecode(MyReg.Reg_GetFirstString(HTML, "C=(.*)?\\r\\n"));
-            alldata[i].filetype = MyReg.Reg_GetFirstString(HTML, "D=(.*)?\\r\\n");
-            alldata[i].cookie = "FTN5K=" + MyReg.Reg_GetFirstString(HTML, "E=(.*)?\\r\\n");
-            alldata[i].fileCount = Int32.Parse(MyReg.Reg_GetFirstString(HTML, "F=(.*)?\\r\\n"));
-            alldata[i].fileSize = MyReg.Reg_GetFirstString(HTML, "G=(.*)?\\r\\n");
-            //MessageBox.Show("["+ alldata[i].codeUrl + "]");
-            alldata[i].canPlay = canPlay;
-            //if(canPlay == 1) //使用invoke传递消息，通知修改linklable的值,传递{index, canplay}
-            _syncContext.Post(Sync_OneRowDataGrid, alldata[i]);
+                String magnet = alldata[i].location;
+                String code = MyReg.Reg_GetFirstString(magnet, "(?<=btih:)([\\d\\w]{40})");
+                Console.WriteLine(i);
+                String HTML = MyHttp.myHttpStringPost(requestUrl, "UTF-8", "CODE=" + code);
+                //Thread.Sleep(50);
+                
+                int canPlay = MyReg.Reg_GetFirstNum(HTML, "A=(.*)?\\r\\n");
+                String text = HttpUtility.UrlDecode(MyReg.Reg_GetFirstString(HTML, "B=(.*)?\\r\\n"));
+                int index = text.IndexOf("】")+1;
+                index = index > -1 ? index : 0;
+                alldata[i].namePlay = text.Substring(index);
+                alldata[i].codeUrl = myDecode(MyReg.Reg_GetFirstString(HTML, "C=(.*)?\\r\\n"));
+                alldata[i].filetype = MyReg.Reg_GetFirstString(HTML, "D=(.*)?\\r\\n");
+                alldata[i].cookie = "FTN5K=" + MyReg.Reg_GetFirstString(HTML, "E=(.*)?\\r\\n");
+                alldata[i].fileCount = Int32.Parse(MyReg.Reg_GetFirstString(HTML, "F=(.*)?\\r\\n"));
+                alldata[i].fileSize = MyReg.Reg_GetFirstString(HTML, "G=(.*)?\\r\\n");
+                //MessageBox.Show("["+ alldata[i].codeUrl + "]");
+                alldata[i].canPlay = canPlay;
+                //if(canPlay == 1) //使用invoke传递消息，通知修改linklable的值,传递{index, canplay}
+                _syncContext.Post(Sync_OneRowDataGrid, alldata[i]);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+            }
         }
         public void Sync_OneRowDataGrid(Object obj) {
             Alldata onedata = (Alldata)obj;
@@ -775,6 +791,12 @@ namespace WindowsFormsApplication2 {
                 mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE, e.X, e.Y, 0, IntPtr.Zero);
             }
         }
-        
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+       
     }
 }

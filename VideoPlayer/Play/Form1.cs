@@ -31,6 +31,7 @@ namespace VideoPlayer
         public delegate void DataChangeHandler(Boolean visible); //定义一个委托
         public event DataChangeHandler dtHandler;
         Form maxForm;
+        Label maxFormLable;
         public static class SIZE_TYPE {
             public const int FULLSCREEN = 0;
             public const int DEFAULTSIZE = 1;
@@ -256,12 +257,21 @@ namespace VideoPlayer
             if (e.nPercent != 100)
             {
                 label3.Text = "正在缓冲...(" + e.nPercent + "%)";
+                label7.BringToFront();
                 label7.Text = "载入中...(" + e.nPercent + "%)";
+                if (maxFormLable != null) {
+                    maxFormLable.BringToFront();
+                    maxFormLable.Text = "载入中...(" + e.nPercent + "%)";
+                }
             }
             else
             {
                 label3.Text = "正在播放"; 
                 label7.Text = "";
+                if (maxFormLable != null)
+                {
+                    maxFormLable.Text = "";
+                }
             }
         }
 
@@ -297,7 +307,7 @@ namespace VideoPlayer
                 if (f.ShowDialog() == DialogResult.OK)
                 {
                     axPlayer1.Open(f.endUrl);
-                    label3.Text = "正在打开.";
+                    label3.Text = "正在打开";
                     label7.Text = "打开中，不要慌，也不要紧张，\n刚开始都是很慢的";
                 }
             }
@@ -357,7 +367,8 @@ namespace VideoPlayer
         }
         public void Play(String url, String cookie, String title)
         {
-            this.lbltitle.Text = title;
+            int index = title.IndexOf("】") + 1;
+            this.lbltitle.Text = title.Substring(index);
             if (!cookie.Equals(""))
                 this.axPlayer1.SetConfig(1105, cookie);
             this.axPlayer1.Open(url);
@@ -378,11 +389,19 @@ namespace VideoPlayer
                 _play.position.Width = _Player.Width;
                 _play.position.Height = _Player.Height;
                 maxForm = new Form();//实例化新窗口设置屏幕设备大小 并置于播放器父窗口
+                
 
                 maxForm.Width = Screen.PrimaryScreen.Bounds.Width;
                 maxForm.Height = Screen.PrimaryScreen.Bounds.Height;
                 maxForm.FormBorderStyle = FormBorderStyle.None;
                 _Player.Parent = maxForm;
+                maxFormLable = new Label();
+                maxFormLable.Width = 120;
+                
+                maxFormLable.Font = new Font("微软雅黑", 12);
+                maxFormLable.ForeColor = SystemColors.ButtonHighlight;
+                maxFormLable.BackColor = SystemColors.ActiveCaptionText;
+                maxForm.Controls.Add(maxFormLable);
                 maxForm.Show();
                 maxForm.TopMost = true;
                 _play.isScreen = true;
@@ -391,6 +410,7 @@ namespace VideoPlayer
                 _Player.Top = 0;
                 _Player.Width = Screen.PrimaryScreen.Bounds.Width;
                 _Player.Height = Screen.PrimaryScreen.Bounds.Height;
+                maxFormLable.BringToFront();
                 label3.Text = "开启全屏播放";
             }
             else
@@ -625,7 +645,7 @@ namespace VideoPlayer
 
         private void colorSlider1_Scroll(object sender, ScrollEventArgs e)
         {
-            axPlayer1.SetVolume(colorSlidersound .Value* 10);  //10倍
+            axPlayer1.SetVolume(colorSlidersound.Value);  //10倍
         }
 
         private void colorSlider2_MouseHover(object sender, EventArgs e)
@@ -829,5 +849,6 @@ namespace VideoPlayer
                 this.axPlayer1.Top = 0;
             }
         }
+        
     }
 }

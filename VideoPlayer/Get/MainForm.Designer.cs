@@ -66,6 +66,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.WebCheckTimer = new System.Windows.Forms.Timer(this.components);
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -212,7 +213,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(233, 594);
+            this.label3.Location = new System.Drawing.Point(214, 594);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 21);
             this.label3.TabIndex = 6;
@@ -224,7 +225,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("宋体", 11F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(316, 594);
+            this.comboBox1.Location = new System.Drawing.Point(297, 594);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(84, 23);
             this.comboBox1.TabIndex = 7;
@@ -235,7 +236,7 @@
             this.btnPre.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnPre.Enabled = false;
             this.btnPre.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnPre.Location = new System.Drawing.Point(158, 590);
+            this.btnPre.Location = new System.Drawing.Point(139, 590);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(75, 30);
             this.btnPre.TabIndex = 8;
@@ -248,7 +249,7 @@
             this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnNext.Enabled = false;
             this.btnNext.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnNext.Location = new System.Drawing.Point(409, 590);
+            this.btnNext.Location = new System.Drawing.Point(390, 590);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 30);
             this.btnNext.TabIndex = 9;
@@ -478,7 +479,7 @@
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(505, 603);
+            this.linkLabel1.Location = new System.Drawing.Point(490, 590);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 12);
             this.linkLabel1.TabIndex = 25;
@@ -492,6 +493,17 @@
             this.WebCheckTimer.Interval = 1000;
             this.WebCheckTimer.Tick += new System.EventHandler(this.WebCheckTimer_Tick);
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(489, 608);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(59, 12);
+            this.linkLabel2.TabIndex = 26;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "帮助/捐赠";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -499,6 +511,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(712, 627);
+            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -577,6 +590,7 @@
         private System.Windows.Forms.Timer WebCheckTimer;
         private System.Windows.Forms.ToolStripMenuItem 复制地址ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制名称ToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 

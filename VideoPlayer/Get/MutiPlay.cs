@@ -54,7 +54,9 @@ namespace VideoPlayer.Get
                 Fcode = MyReg.Reg_GetAllString(HTML, "C\\d+=(.*)\\r\\n");
                 for (int i = 0; i < Fname.Length; i++) //解码
                 {
-                    Fname[i] = HttpUtility.UrlDecode(Fname[i]);
+                    String ttext = HttpUtility.UrlDecode(Fname[i]);
+                    int index = ttext.IndexOf("】") + 1;
+                    Fname[i] = ttext.Substring(index);
                     Fcookie[i] = "FTN5K=" + Fcookie[i];
                     Fcode[i] = myDecode(Fcode[i]);
                 }
@@ -161,5 +163,6 @@ namespace VideoPlayer.Get
             DialogResult = DialogResult.Ignore;
             this.Close();
         }
+        
     }
 }

@@ -47,9 +47,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(135, 36);
+            this.button2.Location = new System.Drawing.Point(127, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 45);
+            this.button2.Size = new System.Drawing.Size(84, 69);
             this.button2.TabIndex = 1;
             this.button2.Text = "卡饭1\r\nLite版本";
             this.button2.UseVisualStyleBackColor = true;
@@ -57,7 +57,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(254, 36);
+            this.button3.Location = new System.Drawing.Point(251, 36);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 45);
             this.button3.TabIndex = 2;
@@ -71,7 +71,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(249, 55);
             this.button4.TabIndex = 3;
-            this.button4.Text = "s";
+            this.button4.Text = "喵，路过~~~";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

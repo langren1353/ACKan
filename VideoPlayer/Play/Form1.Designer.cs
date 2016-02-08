@@ -220,7 +220,7 @@
             this.axPlayer1.Name = "axPlayer1";
             this.axPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axPlayer1.OcxState")));
             this.axPlayer1.Size = new System.Drawing.Size(792, 436);
-            this.axPlayer1.TabIndex = 0;
+            this.axPlayer1.TabIndex = 1;
             this.axPlayer1.OnMessage += new AxAPlayer3Lib._IPlayerEvents_OnMessageEventHandler(this.axPlayer1_OnMessage);
             this.axPlayer1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.axPlayer1_PreviewKeyDown);
             // 
@@ -269,7 +269,7 @@
             this.label2.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.label2.Size = new System.Drawing.Size(61, 38);
             this.label2.TabIndex = 63;
-            this.label2.Text = "000:00:00";
+            this.label2.Text = "00:00:00";
             // 
             // label5
             // 
@@ -386,7 +386,7 @@
             this.label1.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.label1.Size = new System.Drawing.Size(61, 38);
             this.label1.TabIndex = 62;
-            this.label1.Text = "00:00:000";
+            this.label1.Text = "00:00:00";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pic_play_pause
@@ -551,15 +551,14 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(312, 63);
+            this.label7.Location = new System.Drawing.Point(0, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(165, 28);
-            this.label7.TabIndex = 63;
+            this.label7.TabIndex = 0;
             this.label7.Text = "正在载入中........";
             this.label7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Move_MouseDown);
             // 
