@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Windows.Forms;
+using VideoPlayer.Dialog;
 
 namespace WindowsFormsApplication2 {
     public partial class Form1 : Form {
@@ -83,9 +86,7 @@ namespace WindowsFormsApplication2 {
                 String HTMLVALUE = streamReader.ReadToEnd();
                 stream.Close();
                 httpResp.Close();
-                //if (HTMLVALUE.IndexOf("对不起，暂时没有关于") > -1) {
-                //   MessageBox.Show(this, "没有找到相关搜索结果\r\n O_O"); return;
-                //}
+                
                 insetIntoListViewWithHTTPVAULE(HTMLVALUE);
                 //lblStatus.Text = "搜索完成，请低调使用";
                 _syncContext.Post(Sync_lbl, "搜索完成，请低调使用");
@@ -95,13 +96,24 @@ namespace WindowsFormsApplication2 {
             }
         }
         public void insetIntoListViewWithHTTPVAULE(String HTML) {
-
+            if (CiteValue.getIsExist(HTML) == false){
+                String[] oneRow = new String[7];
+                oneRow[0] = "";
+                oneRow[1] = "";
+                oneRow[2] = "找不到资源";
+                oneRow[3] = "换一个再搜索试试吧 喵~~~";
+                oneRow[4] = "";
+                oneRow[5] = "";
+                oneRow[6] = "";
+                this.dataGridView1.Rows.Add(oneRow);
+                MessageBox.Show(this, "没有找到相关搜索结果\r\n O_O"); return;
+            }
             HTML = Reg_replace(HTML, "</?span[^>]*>", ""); // 去除原来的高亮等之类的特殊关键字
             HTML = Reg_replace(HTML, "\\/\\*.*\\*\\/", ""); // 去除原始代码中的注释
             HTML = Reg_replace(HTML, "<script[^>]*>[\\s\\S]*?</script>", ""); // 去除原始代码中的Script代码
 
             //Console.Write(HTML);
-           this.textBox1.Text = HTML;
+           //this.textBox1.Text = HTML;
             //return;
 
             String[] size = CiteValue.regGetSize(HTML);// 大小
@@ -709,39 +721,39 @@ namespace WindowsFormsApplication2 {
         }
         public void webCheckThreadFunc()
         {
-            //try
-            //{
-            //    WebClient webc = new WebClient();
-            //    String data = webc.DownloadString("http://www.bt-soso.com/sitemap.xml");
-            //    if (data.Length > 0)
-            //        lblStatus.Text = "网站连接正常 O_O";
-            //    else
-            //        throw new Exception();
-            //}
-            //catch (Exception ee)
-            //{
-            //    MessageBox.Show(this, "网站连接出了问题，请联系网站站长", "啊~~出问题了");
-            //    System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=1695885434&site=qq&menu=yes");
-            //}
-            //try
-            //{
-            //    String HTML = MyHttp.myHttpStringGet("http://blog.sina.com.cn/s/blog_6a1557940102w47g.html", "UTF-8");
-            //    String version = MyReg.Reg_GetFirstString(HTML, "【(V\\d+.\\d+)】");
-            //    if (!version.Equals("V1.3") && !version.Equals(""))
-            //    {
-            //        String text = MyReg.Reg_GetFirstString(HTML, "】([^【]+?)</div>");
-            //        text = text.Replace("<br />", "");
-            //        if (MessageBox.Show(this, version + text, "点击更新~", MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-            //        {
-            //            System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
-            //            this.Close();
-            //        }
-            //    }
-            //}
-            //catch (Exception ee)
-            //{
-            //    //MessageBox.Show(this, "检测更新失败", "啊~~出问题了");
-            //}
+            try
+            {
+                WebClient webc = new WebClient();
+                String data = webc.DownloadString("http://www.bt-soso.com/sitemap.xml");
+                if (data.Length > 0)
+                    lblStatus.Text = "网站连接正常 O_O";
+                else
+                    throw new Exception();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(this, "网站连接出了问题，请联系网站站长", "啊~~出问题了");
+                System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=1695885434&site=qq&menu=yes");
+            }
+            try
+            {
+                String HTML = MyHttp.myHttpStringGet("http://blog.sina.com.cn/s/blog_6a1557940102w47g.html", "UTF-8");
+                String version = MyReg.Reg_GetFirstString(HTML, "【(V\\d+.\\d+)】");
+                if (!version.Equals("V1.3") && !version.Equals(""))
+                {
+                    String text = MyReg.Reg_GetFirstString(HTML, "】([^【]+?)</div>");
+                    text = text.Replace("<br />", "");
+                    if (MessageBox.Show(this, version + text, "点击更新~", MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ee)
+            {
+                //MessageBox.Show(this, "检测更新失败", "啊~~出问题了");
+            }
         }
 
         private void dataGridView1_Resize(object sender, EventArgs e)
@@ -794,9 +806,13 @@ namespace WindowsFormsApplication2 {
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
         }
 
-       
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AboutBox1 about = new AboutBox1();
+            about.ShowDialog();
+        }
     }
 }

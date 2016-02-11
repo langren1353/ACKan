@@ -8,7 +8,8 @@ namespace WindowsFormsApplication2 {
         private static String[,] SearchCite = {
             // 固定格式：0：创建时间。1：文件大小，2：热度
             // 3:文件大小 4:文件名 5:地址 6:热度 7:创建时间
-            // 8：当前页数 9：最大页数
+            // 8：当前页数 9：最大页数 10：最大页数2
+            // 11：是否存在，有则存在
            
             {
                 "http://www.bt-soso.com/search/KKKK_ctime_LLLL.html",
@@ -23,7 +24,9 @@ namespace WindowsFormsApplication2 {
 
                 "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
                 "_(\\d+).html\">尾页</a></li>",
-                "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>"
+                "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+
+                "item-title" //正向，存在则有结果
             },{
                 "http://www.sousoubt.com/search/KKKK_ctime_LLLL.html",
                 "http://www.sousoubt.com/search/KKKK_length_LLLL.html",
@@ -37,7 +40,9 @@ namespace WindowsFormsApplication2 {
 
                 "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
                 "_(\\d+).html\">尾页</a></li>",
-                "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>"
+                "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+
+                "item-title" //正向，存在则有结果
             },
            {
                 "http://www.1024bt.net/s/KKKK/LLLL/",
@@ -52,7 +57,9 @@ namespace WindowsFormsApplication2 {
 
                 "ed\"><a>(\\d+)</a></li>",
                 "-(\\d+)\">末页</a>",
-                "-\\d+\">(\\d+)</a>"
+                "-\\d+\">(\\d+)</a>",
+
+                "<ul>\\s<li>" //正向，存在则有结果
             },
            {
                 "http://www.nimasou.com/l/KKKK-first-asc-LLLL",
@@ -67,13 +74,16 @@ namespace WindowsFormsApplication2 {
 
                 "ed\"><a>(\\d+)</a></li>",
                 "-(\\d+)\">末页</a>",
-                "-\\d+\">(\\d+)</a>"
+                "-\\d+\">(\\d+)</a>",
+
+                "x-item" //正向，存在则有结果
             }
         };
         public static int CITE_FILAG = 0, //BTSOSO = 0, BTDAO = 1;
             CITE_SEARCH_FLAG = 0; //TIMESET = 0, SIZESET = 1, HOTSET = 2;
         private const int REG_SIZE = 3, REG_NAME = 4, REG_LOCATION = 5, REG_HOT = 6, REG_TIME = 7;
         private const int REG_CUR = 8, REG_MAX = 9, REG_MAX2 = 10;
+        private const int REG_EXIST = 11;
         public int curIndex = 1;
         public int maxIndex = 1;
         /**正则式**/
@@ -126,6 +136,13 @@ namespace WindowsFormsApplication2 {
             url = url.Replace("KKKK", key);
             url = url.Replace("LLLL", curIndex + "");
             return url;
+        }
+        public Boolean getIsExist(String source) {
+            String regStr = SearchCite[CITE_FILAG, REG_EXIST];
+            String[] kk = MyReg.Reg_GetAllString(source, regStr);
+            if (kk == null)
+                return false;
+            return true;
         }
     }
 }

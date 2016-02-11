@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("ACPlayer")]
-[assembly: AssemblyDescription("AC 播放器")]
+[assembly: AssemblyDescription(" 本软件是用于资料搜索专用，使用后请立刻删除.本软件被用作任何用途将与作者无关")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AC—ESword")]
-[assembly: AssemblyProduct("XX播放器")]
-[assembly: AssemblyCopyright("Copyright 2016")]
+[assembly: AssemblyCompany("AC")]
+[assembly: AssemblyProduct("AC播放器")]
+[assembly: AssemblyCopyright("Copyright 日了狗")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

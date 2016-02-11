@@ -53,7 +53,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnNewMovie = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.CNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,8 +66,12 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.WebCheckTimer = new System.Windows.Forms.Timer(this.components);
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -88,7 +91,7 @@
             this.input_search.Font = new System.Drawing.Font("宋体", 12F);
             this.input_search.Location = new System.Drawing.Point(103, 17);
             this.input_search.Name = "input_search";
-            this.input_search.Size = new System.Drawing.Size(466, 26);
+            this.input_search.Size = new System.Drawing.Size(455, 26);
             this.input_search.TabIndex = 1;
             this.input_search.Click += new System.EventHandler(this.input_search_Click);
             this.input_search.KeyUp += new System.Windows.Forms.KeyEventHandler(this.input_search_KeyUp);
@@ -98,9 +101,9 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(582, 13);
+            this.button1.Location = new System.Drawing.Point(564, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(61, 30);
+            this.button1.Size = new System.Drawing.Size(89, 30);
             this.button1.TabIndex = 2;
             this.button1.Text = "搜索";
             this.button1.UseVisualStyleBackColor = true;
@@ -261,7 +264,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(103, 57);
+            this.radioButton1.Location = new System.Drawing.Point(97, 55);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(71, 16);
             this.radioButton1.TabIndex = 12;
@@ -273,7 +276,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(187, 57);
+            this.radioButton2.Location = new System.Drawing.Point(164, 55);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(71, 16);
             this.radioButton2.TabIndex = 13;
@@ -284,7 +287,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(264, 57);
+            this.radioButton3.Location = new System.Drawing.Point(231, 55);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(71, 16);
             this.radioButton3.TabIndex = 14;
@@ -296,10 +299,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label4.Location = new System.Drawing.Point(12, 52);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 21);
+            this.label4.Size = new System.Drawing.Size(79, 20);
             this.label4.TabIndex = 16;
             this.label4.Text = "排序方式：";
             // 
@@ -317,9 +320,9 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(649, 18);
+            this.button3.Location = new System.Drawing.Point(6, 37);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(53, 23);
+            this.button3.Size = new System.Drawing.Size(39, 38);
             this.button3.TabIndex = 18;
             this.button3.Text = "置顶";
             this.button3.UseVisualStyleBackColor = true;
@@ -336,7 +339,7 @@
             "搜搜BT",
             "1024bt",
             "nimaSou"});
-            this.comboBox2.Location = new System.Drawing.Point(448, 52);
+            this.comboBox2.Location = new System.Drawing.Point(437, 49);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 19;
@@ -347,29 +350,19 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10F);
-            this.label2.Location = new System.Drawing.Point(375, 55);
+            this.label2.Location = new System.Drawing.Point(361, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 14);
             this.label2.TabIndex = 20;
             this.label2.Text = "搜索地址:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(16, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.Visible = false;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            // 
             // btnNewMovie
             // 
             this.btnNewMovie.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewMovie.BackColor = System.Drawing.SystemColors.Window;
-            this.btnNewMovie.Location = new System.Drawing.Point(582, 47);
+            this.btnNewMovie.Location = new System.Drawing.Point(564, 47);
             this.btnNewMovie.Name = "btnNewMovie";
-            this.btnNewMovie.Size = new System.Drawing.Size(120, 26);
+            this.btnNewMovie.Size = new System.Drawing.Size(89, 26);
             this.btnNewMovie.TabIndex = 22;
             this.btnNewMovie.Text = "最新热门电影";
             this.btnNewMovie.UseVisualStyleBackColor = false;
@@ -495,6 +488,7 @@
             // 
             // linkLabel2
             // 
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Location = new System.Drawing.Point(489, 608);
             this.linkLabel2.Name = "linkLabel2";
@@ -504,22 +498,51 @@
             this.linkLabel2.Text = "帮助/捐赠";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(2, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 21);
+            this.textBox1.TabIndex = 27;
+            this.textBox1.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(6, 13);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(39, 23);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "关于";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Location = new System.Drawing.Point(656, -1);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(50, 78);
+            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(712, 627);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnNewMovie);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.radioButton3);
@@ -534,14 +557,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(200, 50);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "AC 磁力搜索 V2.4";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -574,7 +599,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnNewMovie;
         private System.Windows.Forms.ColumnHeader C_canPlay;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -591,6 +615,9 @@
         private System.Windows.Forms.ToolStripMenuItem 复制地址ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 复制名称ToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
