@@ -26,7 +26,7 @@ namespace VideoPlayer.Get
         private void button1_Click(object sender, EventArgs e)
         {
             String[] result = dealText();
-            if (result.Length != 0) 
+            if (result != null && result.Length != 0) 
             {
                 WindowsFormsApplication2.Form1 fm1 = (WindowsFormsApplication2.Form1)this.Owner;
                 fm1.Btn2ListFormDeal(result);

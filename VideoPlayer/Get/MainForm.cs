@@ -18,12 +18,14 @@ namespace WindowsFormsApplication2 {
         CiteValue CiteValue = new CiteValue();// 初始化，默认是BT-SOSO
         SynchronizationContext _syncContext = null;
         int allcount = 0; // 列表：总记录数
-        String urlPlay = "http://xfcd.ctfs.ftn.qq.com/ftn_handler/CODE?compressed=0&dtype=1&fname=A.";
+        String urlPlay = VideoPlayer.Form1.defaultHost+"/ftn_handler/CODE?compressed=0&dtype=1&fname=A.";
         String requestUrl = Program.DEBUG_URL+"/CodeDeal/find"; //http://bt-soso.com:8080/CodeDeal/find
         bool isFinish = false;
         bool is_clearAll = false;
         int defaultNameSize = 0;
         VideoPlayer.Form1 playForm;
+        public static String version = " V2.5";
+        public int mutiCount = 0;
         class Alldata{
             public int curIndex;
             public static int allcount = 0;
@@ -55,6 +57,7 @@ namespace WindowsFormsApplication2 {
             InitializeComponent();
             this.AddOwnedForm(playForm);
             _syncContext = SynchronizationContext.Current;
+            this.Text += version;
         }
         private void input_search_KeyUp(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
@@ -97,6 +100,7 @@ namespace WindowsFormsApplication2 {
         }
         public void insetIntoListViewWithHTTPVAULE(String HTML) {
             if (CiteValue.getIsExist(HTML) == false){
+                this.dataGridView1.Rows.Clear();
                 String[] oneRow = new String[7];
                 oneRow[0] = "";
                 oneRow[1] = "";
@@ -106,14 +110,15 @@ namespace WindowsFormsApplication2 {
                 oneRow[5] = "";
                 oneRow[6] = "";
                 this.dataGridView1.Rows.Add(oneRow);
-                MessageBox.Show(this, "没有找到相关搜索结果\r\n O_O"); return;
+                MessageBox.Show(this, "没有找到相关搜索结果\r\n O_O");
+                return;
             }
             HTML = Reg_replace(HTML, "</?span[^>]*>", ""); // 去除原来的高亮等之类的特殊关键字
             HTML = Reg_replace(HTML, "\\/\\*.*\\*\\/", ""); // 去除原始代码中的注释
             HTML = Reg_replace(HTML, "<script[^>]*>[\\s\\S]*?</script>", ""); // 去除原始代码中的Script代码
-
+            HTML = Reg_replace(HTML, "&nbsp;&nbsp;<b>新</b>", "");
             //Console.Write(HTML);
-           //this.textBox1.Text = HTML;
+            // this.textBox1.Text = HTML;
             //return;
 
             String[] size = CiteValue.regGetSize(HTML);// 大小
@@ -121,8 +126,12 @@ namespace WindowsFormsApplication2 {
             String[] location = CiteValue.regGetLocation(HTML);// 地址
             String[] hot = CiteValue.regGetHot(HTML);// 热度
             String[] time = CiteValue.regGetTime(HTML);// 创建时间
-            
-            
+
+            if (!(size.Length == name.Length && name.Length == location.Length && location.Length == hot.Length && hot.Length == time.Length))
+            {
+                MessageBox.Show("数据获取异常，点击右下角\n反馈能帮助软件更加完善");
+                return;
+            }
             Alldata.allcount = size.Length;
             for (int i = 0; i < size.Length; i++) {
                 alldata[i] = new Alldata();
@@ -134,8 +143,20 @@ namespace WindowsFormsApplication2 {
             }
             size = name = location = hot = time = null;
             // 获得当前页数，获得最大页数
-            this.CiteValue.curIndex = CiteValue.regGetCurIndex(HTML);
-            this.CiteValue.maxIndex = CiteValue.regGetMaxIndex(HTML);
+            try {
+                this.CiteValue.curIndex = CiteValue.regGetCurIndex(HTML);
+            }
+            catch (Exception ee) {
+                Console.WriteLine(ee);
+            }
+            try
+            {
+                this.CiteValue.maxIndex = CiteValue.regGetMaxIndex(HTML);
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee);
+            }
             //MessageBox.Show(this.CiteValue.curIndex + " "+ this.CiteValue.maxIndex);
             _syncContext.Post(Sync_ListView, new object());
             //if (this.CiteValue.maxIndex < this.CiteValue.curIndex) this.CiteValue.maxIndex = this.CiteValue.curIndex;
@@ -311,7 +332,7 @@ namespace WindowsFormsApplication2 {
         }
         private void Form1_Load(object sender, EventArgs e) {
             this.comboBox2.SelectedIndex = 0;
-            lblStatus.Text = "检测网站中..."; // 
+            lblStatus.Text = "检测更新中..."; // 
             WebCheckTimer.Enabled = true;
             defaultNameSize = this.dataGridView1.Columns[2].Width;
         }
@@ -617,7 +638,9 @@ namespace WindowsFormsApplication2 {
         public void Btn2ListFormDeal(String[] mangnets) {
             //alldata = new Alldata[500];
             int min = mangnets.Length >= 500 ? 500 : mangnets.Length;
+            mutiCount = min;
             //if (min > 0) allcount = min;
+            _syncContext.Post(Sync_lbl, "获取中。。。");
             for (int i = 0; i < min; i++)
             {
                 alldata[Alldata.allcount] = new Alldata();
@@ -631,7 +654,7 @@ namespace WindowsFormsApplication2 {
         public void ThreadGetAllPlayAddr2(Object obj) {
             try {
                 int i = (int)obj;
-
+                
                 String magnet = alldata[i].location;
                 String code = MyReg.Reg_GetFirstString(magnet, "(?<=btih:)([\\d\\w]{40})");
                 Console.WriteLine(i);
@@ -651,6 +674,8 @@ namespace WindowsFormsApplication2 {
                 //MessageBox.Show("["+ alldata[i].codeUrl + "]");
                 alldata[i].canPlay = canPlay;
                 //if(canPlay == 1) //使用invoke传递消息，通知修改linklable的值,传递{index, canplay}
+                if (i == mutiCount-1)
+                    _syncContext.Post(Sync_lbl, "获取完成");
                 _syncContext.Post(Sync_OneRowDataGrid, alldata[i]);
             }
             catch (Exception e) {
@@ -708,9 +733,10 @@ namespace WindowsFormsApplication2 {
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            VideoPlayer.Dialog.Form1 Dia_fankui = new VideoPlayer.Dialog.Form1();
-            if (Dia_fankui.ShowDialog() == DialogResult.OK)
-                ;
+            //VideoPlayer.Dialog.Form1 Dia_fankui = new VideoPlayer.Dialog.Form1();
+            //if (Dia_fankui.ShowDialog() == DialogResult.OK)
+            //    ;
+            System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
         }
 
         private void WebCheckTimer_Tick(object sender, EventArgs e)
@@ -721,34 +747,35 @@ namespace WindowsFormsApplication2 {
         }
         public void webCheckThreadFunc()
         {
+            //try
+            //{
+            //    WebClient webc = new WebClient();
+            //    String data = webc.DownloadString("http://www.bt-soso.com/sitemap.xml");
+            //    if (data.Length > 0)
+            //        lblStatus.Text = "网站连接正常 O_O";
+            //    else
+            //        throw new Exception();
+            //}
+            //catch (Exception ee)
+            //{
+            //    MessageBox.Show(this, "网站连接出了问题，请联系网站站长", "啊~~出问题了");
+            //    System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=1695885434&site=qq&menu=yes");
+            //}
             try
             {
-                WebClient webc = new WebClient();
-                String data = webc.DownloadString("http://www.bt-soso.com/sitemap.xml");
-                if (data.Length > 0)
-                    lblStatus.Text = "网站连接正常 O_O";
-                else
-                    throw new Exception();
-            }
-            catch (Exception ee)
-            {
-                MessageBox.Show(this, "网站连接出了问题，请联系网站站长", "啊~~出问题了");
-                System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=1695885434&site=qq&menu=yes");
-            }
-            try
-            {
-                String HTML = MyHttp.myHttpStringGet("http://blog.sina.com.cn/s/blog_6a1557940102w47g.html", "UTF-8");
+                String HTML = MyHttp.myHttpStringGet("http://www.kafan.cn/home.php?mod=space&uid=866624&do=blog&id=11178", "GBK");
                 String version = MyReg.Reg_GetFirstString(HTML, "【(V\\d+.\\d+)】");
-                if (!version.Equals("V1.3") && !version.Equals(""))
+                if (!version.Equals("V2.5") && !version.Equals(""))
                 {
-                    String text = MyReg.Reg_GetFirstString(HTML, "】([^【]+?)</div>");
-                    text = text.Replace("<br />", "");
+                    String text = MyReg.Reg_GetFirstString(HTML, "】([^【]+)");
+                    text = text.Replace("|", "\n");
                     if (MessageBox.Show(this, version + text, "点击更新~", MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
                         System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
                         this.Close();
                     }
                 }
+                this.lblStatus.Text = "当前是最新版本";
             }
             catch (Exception ee)
             {
