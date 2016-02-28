@@ -45,6 +45,7 @@ namespace VideoPlayer
         }
         public Form1()
         {
+            MessageBox.Show("");
             InitializeComponent();
             pictureBox1_Click_1(this.pictureBox1, null);
         }

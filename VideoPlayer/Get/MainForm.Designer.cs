@@ -336,8 +336,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "BT-SOSO",
-            "搜搜BT",
-            "1024bt",
+            "1024BT",
             "nimaSou"});
             this.comboBox2.Location = new System.Drawing.Point(437, 49);
             this.comboBox2.Name = "comboBox2";
@@ -410,6 +409,7 @@
             // CNum
             // 
             this.CNum.HeaderText = "编号";
+            this.CNum.MinimumWidth = 38;
             this.CNum.Name = "CNum";
             this.CNum.ReadOnly = true;
             this.CNum.Width = 38;
@@ -417,20 +417,24 @@
             // CSize
             // 
             this.CSize.HeaderText = "大小";
+            this.CSize.MinimumWidth = 70;
             this.CSize.Name = "CSize";
             this.CSize.ReadOnly = true;
-            this.CSize.Width = 60;
+            this.CSize.Width = 70;
             // 
             // CName
             // 
             this.CName.HeaderText = "名称";
+            this.CName.MinimumWidth = 190;
             this.CName.Name = "CName";
             this.CName.ReadOnly = true;
-            this.CName.Width = 200;
+            this.CName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CName.Width = 190;
             // 
             // CAddr
             // 
             this.CAddr.HeaderText = "地址";
+            this.CAddr.MinimumWidth = 170;
             this.CAddr.Name = "CAddr";
             this.CAddr.ReadOnly = true;
             this.CAddr.Width = 170;
@@ -438,6 +442,7 @@
             // CHot
             // 
             this.CHot.HeaderText = "热度";
+            this.CHot.MinimumWidth = 55;
             this.CHot.Name = "CHot";
             this.CHot.ReadOnly = true;
             this.CHot.Width = 55;
@@ -445,6 +450,7 @@
             // CTime
             // 
             this.CTime.HeaderText = "创建时间";
+            this.CTime.MinimumWidth = 90;
             this.CTime.Name = "CTime";
             this.CTime.ReadOnly = true;
             this.CTime.Width = 90;
@@ -452,6 +458,7 @@
             // CPlay
             // 
             this.CPlay.HeaderText = "播放";
+            this.CPlay.MinimumWidth = 70;
             this.CPlay.Name = "CPlay";
             this.CPlay.ReadOnly = true;
             this.CPlay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -500,7 +507,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(2, 12);
+            this.textBox1.Location = new System.Drawing.Point(2, -1);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 27;
@@ -519,6 +526,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Location = new System.Drawing.Point(656, -1);
@@ -603,13 +611,6 @@
         private System.Windows.Forms.ColumnHeader C_canPlay;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CAddr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CHot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CTime;
-        private System.Windows.Forms.DataGridViewLinkColumn CPlay;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Timer WebCheckTimer;
         private System.Windows.Forms.ToolStripMenuItem 复制地址ToolStripMenuItem;
@@ -618,6 +619,13 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CAddr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CHot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTime;
+        private System.Windows.Forms.DataGridViewLinkColumn CPlay;
     }
 }
 

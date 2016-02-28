@@ -23,8 +23,9 @@ namespace WindowsFormsApplication2 {
         bool isFinish = false;
         bool is_clearAll = false;
         int defaultNameSize = 0;
+        int defaultAddrSize = 0;
         VideoPlayer.Form1 playForm;
-        public static String version = " V2.5";
+        public String CurVersion = "V2.7";
         public int mutiCount = 0;
         class Alldata{
             public int curIndex;
@@ -57,7 +58,7 @@ namespace WindowsFormsApplication2 {
             InitializeComponent();
             this.AddOwnedForm(playForm);
             _syncContext = SynchronizationContext.Current;
-            this.Text += version;
+            this.Text += CurVersion;
         }
         private void input_search_KeyUp(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
@@ -335,6 +336,7 @@ namespace WindowsFormsApplication2 {
             lblStatus.Text = "检测更新中..."; // 
             WebCheckTimer.Enabled = true;
             defaultNameSize = this.dataGridView1.Columns[2].Width;
+            defaultAddrSize = this.dataGridView1.Columns[3].Width;
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e){
@@ -503,7 +505,6 @@ namespace WindowsFormsApplication2 {
         }
         public void tryToPlay() {
             int rowIndex = Int32.Parse((String)dataGridView1.SelectedRows[0].Cells[0].Value);
-            VideoPlayer.Get.MutiPlay fm1 = new VideoPlayer.Get.MutiPlay(alldata[rowIndex].location);
             String text = (String)dataGridView1.SelectedRows[0].Cells[6].Value;
             if (!text.Equals("无效"))
             {
@@ -532,10 +533,10 @@ namespace WindowsFormsApplication2 {
                     {
                         Console.WriteLine(ee.Message);
                     }
-                }
-                else {
+                } else {
                     //弹出窗口，窗口中请求第二个地址，样式和本dataview相似
                     //MessageBox.Show("多个资源");
+                    VideoPlayer.Get.MutiPlay fm1 = new VideoPlayer.Get.MutiPlay(alldata[rowIndex].location);
                     DialogResult result = fm1.ShowDialog();
                     if (result == DialogResult.OK)
                     {
@@ -582,7 +583,7 @@ namespace WindowsFormsApplication2 {
                 }
             }
             else {
-                MessageBox.Show("不做事");
+                //MessageBox.Show("不做事");
                 return;
             }
         }
@@ -764,11 +765,14 @@ namespace WindowsFormsApplication2 {
             try
             {
                 String HTML = MyHttp.myHttpStringGet("http://www.kafan.cn/home.php?mod=space&uid=866624&do=blog&id=11178", "GBK");
+                int i = HTML.IndexOf("body");
+                HTML = HTML.Substring(i);
                 String version = MyReg.Reg_GetFirstString(HTML, "【(V\\d+.\\d+)】");
-                if (!version.Equals("V2.5") && !version.Equals(""))
+                if (!version.Equals(CurVersion) && !version.Equals(""))
                 {
                     String text = MyReg.Reg_GetFirstString(HTML, "】([^【]+)");
                     text = text.Replace("|", "\n");
+                    text = text.Replace("<br>", "");
                     if (MessageBox.Show(this, version + text, "点击更新~", MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
                         System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
@@ -786,7 +790,8 @@ namespace WindowsFormsApplication2 {
         private void dataGridView1_Resize(object sender, EventArgs e)
         {
             Console.WriteLine(this.Width - 700);
-            this.dataGridView1.Columns[2].Width = defaultNameSize + this.Width - 700;
+            this.dataGridView1.Columns[2].Width = (int)(defaultNameSize + (this.Width - 700 - 30) * 0.6);
+            this.dataGridView1.Columns[3].Width = (int)(defaultAddrSize + (this.Width - 700 - 30) * 0.4);
         }
 
         private void 复制名称ToolStripMenuItem_Click(object sender, EventArgs e)

@@ -11,47 +11,14 @@ namespace WindowsFormsApplication2 {
             // 8：当前页数 9：最大页数 10：最大页数2
             // 11：是否存在，有则存在
            
-            //{
-            //    "http://bt-soso.com/main-search-kw-KKKK-px-1-page-LLLL.html",
-            //    "http://bt-soso.com/main-search-kw-KKKK-px-2-page-LLLL.html",
-            //    "http://bt-soso.com/main-search-kw-KKKK-px-3-page-LLLL.html",
-
-            //    "<td width=\"100px\"><b>([^>]+)</b></td>",
-            //    "<h5[^>]+><a[^>]+>([^<]+)</a>",
-            //    "href=\"(?=magnet)([^\"]+)\"",
-            //    "<td width=\"80px\"><b>(\\d+)",
-            //    "<td width=\"90px\"><b>([^>]+)</b></td>",
-
-            //    "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
-            //    "_(\\d+).html\">尾页</a></li>",
-            //    "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
-
-            //    "item-title" //正向，存在则有结果
-            //},
             {
-                "http://www.bt-soso.com:82/search/KKKK_ctime_LLLL.html",
-                "http://www.bt-soso.com:82/search/KKKK_length_LLLL.html",
-                "http://www.bt-soso.com:82/search/KKKK_click_LLLL.html",
-
-                "<b>([\\d\\.]+ (G|M)B)</b>",
-                "<h5[^>]+>([^<]+)</h5>",
-                "href=\"(?=magnet)([^\"]+)\"",
-                "(\\d+ )&#176;",
-                "(\\d+-\\d+-\\d+)",
-
-                "",
-                "(\\d+)",
-                "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
-
-                "item-title" //正向，存在则有结果
-            },{
-                "http://www.sousoubt.com/search/KKKK_ctime_LLLL.html",
-                "http://www.sousoubt.com/search/KKKK_length_LLLL.html",
-                "http://www.sousoubt.com/search/KKKK_click_LLLL.html",
+                "http://bt-soso.com/main-search-kw-KKKK-px-1-page-LLLL.html",
+                "http://bt-soso.com/main-search-kw-KKKK-px-2-page-LLLL.html",
+                "http://bt-soso.com/main-search-kw-KKKK-px-3-page-LLLL.html",
 
                 "<td width=\"100px\"><b>([^>]+)</b></td>",
                 "<h5[^>]+><a[^>]+>([^<]+)</a>",
-                "label-primary.*?com/([\\d\\w]+)",
+                "href=\"(?=magnet)([^\"]+)\"",
                 "<td width=\"80px\"><b>(\\d+)",
                 "<td width=\"90px\"><b>([^>]+)</b></td>",
 
@@ -61,6 +28,40 @@ namespace WindowsFormsApplication2 {
 
                 "item-title" //正向，存在则有结果
             },
+            //{
+            //    "http://www.bt-soso.com:82/search/KKKK_ctime_LLLL.html",
+            //    "http://www.bt-soso.com:82/search/KKKK_length_LLLL.html",
+            //    "http://www.bt-soso.com:82/search/KKKK_click_LLLL.html",
+
+            //    "<b>([\\d\\.]+ (G|M|K)B)</b>",
+            //    "<h5[^>]+>([^<]+)</h5>",
+            //    "href=\"(?=magnet)([^\"]+)\"",
+            //    "(\\d+ )&#176;",
+            //    "(\\d{4}-\\d+-\\d+)",
+
+            //    "",
+            //    "(\\d+)",
+            //    "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+
+            //    "item-title" //正向，存在则有结果
+            //},
+           // {
+           //     "http://www.sousoubt.com/search/KKKK_ctime_LLLL.html",
+           //     "http://www.sousoubt.com/search/KKKK_length_LLLL.html",
+           //     "http://www.sousoubt.com/search/KKKK_click_LLLL.html",
+
+           //     "<td width=\"100px\"><b>([^>]+)</b></td>",
+           //     "<h5[^>]+><a[^>]+>([^<]+)</a>",
+           //     "label-primary.*?com/([\\d\\w]+)",
+           //     "<td width=\"80px\"><b>(\\d+)",
+           //     "<td width=\"90px\"><b>([^>]+)</b></td>",
+
+           //     "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+           //     "_(\\d+).html\">尾页</a></li>",
+           //     "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+
+           //     "item-title" //正向，存在则有结果
+           // },
            {
                 "http://www.1024bt.net/s/KKKK/LLLL/",
                 "http://www.1024bt.net/s/KKKK/LLLL/",
@@ -76,7 +77,7 @@ namespace WindowsFormsApplication2 {
                 "-(\\d+)\">末页</a>",
                 "-\\d+\">(\\d+)</a>",
 
-                "<ul>\\s<li>" //正向，存在则有结果
+                "</li><li>" //正向，存在则有结果
             },
            {
                 "http://www.nimasou.com/l/KKKK-first-asc-LLLL",
