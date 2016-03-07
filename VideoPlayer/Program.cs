@@ -5,8 +5,8 @@ static class Program
 {
     //public static String DEBUG_URL = "http://abscoin.iask.in";
     //public static String DEBUG_MUTI_URL = "http://abscoin.iask.in";
-    public static String DEBUG_URL = "http://remix.ac.cn";
-    public static String DEBUG_MUTI_URL = "http://remix.ac.cn";
+    public static String DEBUG_URL = "http://zb227weixin.coding.io/";
+    public static String DEBUG_MUTI_URL = "http://zb227weixin.coding.io/";
     /// <summary>
     /// 应用程序的主入口点。
     /// </summary>

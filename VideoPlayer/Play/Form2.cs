@@ -26,12 +26,12 @@ namespace VideoPlayer
             if (this.textUrl.Text.Equals("") && this.textCookie.Text.Equals(""))
             {
                 flag = myFunction();
-                this.textBox1.Text = this.endUrl + "\n" + this.cookie;
+                //this.textBox1.Text = this.endUrl + "\n" + this.cookie;
 
                 this.textUrl.Text = this.endUrl;
                 this.textCookie.Text = this.cookie;
             }
-            this.endUrl = "http://xfcd.ctfs.ftn.qq.com/" + this.textUrl.Text;
+            this.endUrl = Form1.defaultHost + this.textUrl.Text;
             this.cookie = this.textCookie.Text;
             this.flag = 1;
             //MessageBox.Show(this.endUrl+"\n"+this.cookie);
@@ -99,6 +99,20 @@ namespace VideoPlayer
             this.flag = 1;
             DialogResult = DialogResult.OK;
         }
-        
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (this.textUrl.Text.Equals("") && this.textCookie.Text.Equals(""))
+            {
+                flag = myFunction();
+                //this.textBox1.Text = this.endUrl + "\n" + this.cookie;
+
+                this.textUrl.Text = this.endUrl;
+                this.textCookie.Text = this.cookie;
+            }
+            this.endUrl = Form1.defaultHost + this.textUrl.Text;
+            this.cookie = this.textCookie.Text;
+            this.flag = 1;
+        }
     }
 }

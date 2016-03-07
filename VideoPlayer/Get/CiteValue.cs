@@ -8,9 +8,8 @@ namespace WindowsFormsApplication2 {
         private static String[,] SearchCite = {
             // 固定格式：0：创建时间。1：文件大小，2：热度
             // 3:文件大小 4:文件名 5:地址 6:热度 7:创建时间
-            // 8：当前页数 9：最大页数 10：最大页数2
-            // 11：是否存在，有则存在
-           
+            // 8：当前页数 9：最大页数 10：最大页数2 11：自定义最大值(和正则页数取小者)
+            // 12：是否存在，有则存在
             {
                 "http://bt-soso.com/main-search-kw-KKKK-px-1-page-LLLL.html",
                 "http://bt-soso.com/main-search-kw-KKKK-px-2-page-LLLL.html",
@@ -23,25 +22,27 @@ namespace WindowsFormsApplication2 {
                 "<td width=\"90px\"><b>([^>]+)</b></td>",
 
                 "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
-                "_(\\d+).html\">尾页</a></li>",
-                "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+                "<li><a [\\S]+page-(\\d+).html\">末页</a></li>",
+                "<p>共搜索到<b>(\\d+)</b>页</p>",
+                "66",
 
                 "item-title" //正向，存在则有结果
             },
             //{
-            //    "http://www.bt-soso.com:82/search/KKKK_ctime_LLLL.html",
-            //    "http://www.bt-soso.com:82/search/KKKK_length_LLLL.html",
-            //    "http://www.bt-soso.com:82/search/KKKK_click_LLLL.html",
+            //    "http://133.130.53.156:82/search/KKKK_ctime_LLLL.html",
+            //    "http://133.130.53.156:82/search/KKKK_length_LLLL.html",
+            //    "http://133.130.53.156:82/search/KKKK_click_LLLL.html",
 
-            //    "<b>([\\d\\.]+ (G|M|K)B)</b>",
-            //    "<h5[^>]+>([^<]+)</h5>",
+            //    "<b>【size】([\\d\\.]+ (G|M|K)B)【size】</b>",
+            //    "<h5[^>]+>【title】([^<]+)【title】</h5>",
             //    "href=\"(?=magnet)([^\"]+)\"",
-            //    "(\\d+ )&#176;",
-            //    "(\\d{4}-\\d+-\\d+)",
+            //    "【hot】(\\d+ )&#176;C【hot】",
+            //    "【time】(\\d{4}-\\d+-\\d+)【time】",
 
             //    "",
             //    "(\\d+)",
             //    "<li class=\"disabled\"><a[^>]+>(\\d+)</a></li>",
+            //    "50",
 
             //    "item-title" //正向，存在则有结果
             //},
@@ -76,6 +77,7 @@ namespace WindowsFormsApplication2 {
                 "ed\"><a>(\\d+)</a></li>",
                 "-(\\d+)\">末页</a>",
                 "-\\d+\">(\\d+)</a>",
+                "100",
 
                 "</li><li>" //正向，存在则有结果
             },
@@ -93,6 +95,7 @@ namespace WindowsFormsApplication2 {
                 "ed\"><a>(\\d+)</a></li>",
                 "-(\\d+)\">末页</a>",
                 "-\\d+\">(\\d+)</a>",
+                "100",
 
                 "x-item" //正向，存在则有结果
             }
@@ -100,8 +103,8 @@ namespace WindowsFormsApplication2 {
         public static int CITE_FILAG = 0, //BTSOSO = 0, BTDAO = 1;
             CITE_SEARCH_FLAG = 0; //TIMESET = 0, SIZESET = 1, HOTSET = 2;
         private const int REG_SIZE = 3, REG_NAME = 4, REG_LOCATION = 5, REG_HOT = 6, REG_TIME = 7;
-        private const int REG_CUR = 8, REG_MAX = 9, REG_MAX2 = 10;
-        private const int REG_EXIST = 11;
+        private const int REG_CUR = 8, REG_MAX = 9, REG_MAX2 = 10, REG_MAXDefault = 11;
+        private const int REG_EXIST = 12;
         public int curIndex = 1;
         public int maxIndex = 1;
         /**正则式**/
@@ -147,6 +150,8 @@ namespace WindowsFormsApplication2 {
                 result = MyReg.Reg_GetLastNum(source, regStr);
                 maxIndex = result;
             }
+            int max_Default = Int32.Parse(SearchCite[CITE_FILAG, REG_MAXDefault]);
+            maxIndex = maxIndex > max_Default ? max_Default : maxIndex;
             return maxIndex;
         }
         public String getSearchURL(String key) {

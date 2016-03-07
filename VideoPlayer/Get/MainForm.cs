@@ -25,7 +25,7 @@ namespace WindowsFormsApplication2 {
         int defaultNameSize = 0;
         int defaultAddrSize = 0;
         VideoPlayer.Form1 playForm;
-        public String CurVersion = "V2.7";
+        public String CurVersion = "V2.8";
         public int mutiCount = 0;
         class Alldata{
             public int curIndex;
@@ -332,6 +332,8 @@ namespace WindowsFormsApplication2 {
                 doSearchThread();
         }
         private void Form1_Load(object sender, EventArgs e) {
+           // MessageBox.Show(myDecode("4u7rt3qqs1tq724v5r5rttv9s8u7r799q13q0u97085343r099960u05q10vt6vq5r6vtrq1q62212v98282v88tr0rtt50t3u8394789698u6rv1197tu4s1svur6u5"));
+
             this.comboBox2.SelectedIndex = 0;
             lblStatus.Text = "检测更新中..."; // 
             WebCheckTimer.Enabled = true;
@@ -378,15 +380,45 @@ namespace WindowsFormsApplication2 {
             //}
             DataGridViewSelectedRowCollection select = dataGridView1.SelectedRows;
             IEnumerator enumetor = select.GetEnumerator();
+            int i = 0;
             while (enumetor.MoveNext()) {
                 DataGridViewRow row =  (DataGridViewRow)enumetor.Current;
                 outSS+=(row.Cells[3].Value+"\r\n");
+                i++;
+                if (i == 15)
+                {
+                    i = 0;
+                    outSS += "\r\n";
+                }
             }
             WriteToFile("./地址导出.txt", outSS);
+            System.Diagnostics.Process.Start("地址导出.txt", "notepad.exe");
             /**llllllllllllll*/
             lblStatus.Text = "导出成功";
         }
         private void ContextM_OutName_Click(object sender, EventArgs e) {
+            String outSS = "";
+            DataGridViewSelectedRowCollection select = dataGridView1.SelectedRows;
+            IEnumerator enumetor = select.GetEnumerator();
+            int i = 0;
+            while (enumetor.MoveNext())
+            {
+                DataGridViewRow row = (DataGridViewRow)enumetor.Current;
+                outSS += (row.Cells[2].Value + "\r\n");
+                i++;
+                if (i == 15)
+                {
+                    i = 0;
+                    outSS += "\r\n";
+                }
+            }
+            WriteToFile("./名称导出.txt", outSS);
+            System.Diagnostics.Process.Start("名称导出.txt", "notepad.exe");
+            /**llllllllllllll*/
+            lblStatus.Text = "导出成功";
+        }
+        private void 快速导出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             String outSS = "";
             //foreach (ListViewItem item in listView1.Items) {
             //    if (item.Selected == true) {
@@ -398,13 +430,23 @@ namespace WindowsFormsApplication2 {
             while (enumetor.MoveNext())
             {
                 DataGridViewRow row = (DataGridViewRow)enumetor.Current;
-                outSS += (row.Cells[2].Value + "\r\n");
+                outSS += (row.Cells[3].Value + "#"+ row.Cells[2].Value + "\r\n");
             }
-            WriteToFile("./名称导出.txt", outSS);
+            WriteToFile("./简易导出.txt", outSS);
+            System.Diagnostics.Process.Start("简易导出.txt", "notepad.exe");
             /**llllllllllllll*/
             lblStatus.Text = "导出成功";
         }
-        private void WriteToFile(String location, String text) {
+        private void WriteToFile(String location, String text)
+        {
+            try
+            {
+                File.Delete(location);
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee);
+            }
             FileStream filestream = new FileStream(location, FileMode.OpenOrCreate);
             StreamWriter swriter = new StreamWriter(filestream);
             swriter.Write(text);
@@ -771,8 +813,8 @@ namespace WindowsFormsApplication2 {
                 if (!version.Equals(CurVersion) && !version.Equals(""))
                 {
                     String text = MyReg.Reg_GetFirstString(HTML, "】([^【]+)");
-                    text = text.Replace("|", "\n");
-                    text = text.Replace("<br>", "");
+                    //text = text.Replace("|", "\n");
+                    text = text.Replace("<br>", "\n");
                     if (MessageBox.Show(this, version + text, "点击更新~", MessageBoxButtons.OKCancel, MessageBoxIcon.None, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
                         System.Diagnostics.Process.Start("http://bbs.kafan.cn/thread-1870031-1-1.html");
@@ -798,8 +840,21 @@ namespace WindowsFormsApplication2 {
         {
             try
             {
-                String name = (String)dataGridView1.SelectedRows[0].Cells[2].Value;
-                Clipboard.SetData(DataFormats.Text, name);
+                String outSS = "";
+                DataGridViewSelectedRowCollection select = dataGridView1.SelectedRows;
+                IEnumerator enumetor = select.GetEnumerator();
+                int i = 0;
+                while (enumetor.MoveNext())
+                {
+                    DataGridViewRow row = (DataGridViewRow)enumetor.Current;
+                    outSS += (row.Cells[2].Value + "\r\n");
+                    i++;
+                    if (i == 15)
+                    {
+                        i = 0;
+                        outSS += "\r\n";
+                    }
+                }
             }
             catch (Exception ee)
             {
@@ -812,8 +867,22 @@ namespace WindowsFormsApplication2 {
         {
             try
             {
-                String addr = (String)dataGridView1.SelectedRows[0].Cells[3].Value;
-                Clipboard.SetData(DataFormats.Text, addr);
+                String outSS = "";
+                DataGridViewSelectedRowCollection select = dataGridView1.SelectedRows;
+                IEnumerator enumetor = select.GetEnumerator();
+                int i = 0;
+                while (enumetor.MoveNext())
+                {
+                    DataGridViewRow row = (DataGridViewRow)enumetor.Current;
+                    outSS += (row.Cells[3].Value + "\r\n");
+                    i++;
+                    if (i == 15)
+                    {
+                        i = 0;
+                        outSS += "\r\n";
+                    }
+                }
+                Clipboard.SetData(DataFormats.Text, outSS);
             }
             catch (Exception ee)
             {
@@ -846,5 +915,7 @@ namespace WindowsFormsApplication2 {
             AboutBox1 about = new AboutBox1();
             about.ShowDialog();
         }
+
+       
     }
 }

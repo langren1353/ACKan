@@ -16,6 +16,7 @@ namespace VideoPlayer
         private int tryCount = 0;
         public static String defaultHost = "http://xfcd.ctfs.ftn.qq.com"; // 保留传递过来的url值，用于替换
         private String[] otherHost = new String[] {
+            "sz.disk.ftn.qq.com",
             "http://sh.ctfs.ftn.qq.com",
             "http://hz.ftn.qq.com",
             "http://cd.ctfs.ftn.qq.com",
@@ -45,7 +46,6 @@ namespace VideoPlayer
         }
         public Form1()
         {
-            MessageBox.Show("");
             InitializeComponent();
             pictureBox1_Click_1(this.pictureBox1, null);
         }
@@ -55,7 +55,8 @@ namespace VideoPlayer
             this.cookie = cookie;
             this.filename = title;
             InitializeComponent();
-            pictureBox1_Click_1(this.pictureBox1, null);
+            pictureBox1_Click_1(this.pictureBox1, null);//置顶
+            Play();
         }
         
     /// <summary>
@@ -105,6 +106,15 @@ namespace VideoPlayer
                 case conf.WM_LBUTTONDOWN:
                     if (_play.isScreen == false)
                         MoveForm();
+                    break;
+                case conf.WM_LBUTTONUP:
+                    if (_play.isScreen == true)
+                    {// 进度跳转
+                        //MessageBox.Show(colorSlider2.Maximum + "   "+ colorSlider2.Value);
+                        int tmp = (int)((Control.MousePosition.X - _play.VM_X) * 30);
+                        colorSlider2.Value += tmp;
+                        axPlayer1.SetPosition(colorSlider2.Value * 10);
+                    }
                     break;
                 case conf.WM_RBUTTONDOWN:
                      int tempstatus=axPlayer1.GetState();
@@ -269,6 +279,7 @@ namespace VideoPlayer
             {
                 label3.Text = "正在播放"; 
                 label7.Text = "";
+                
                 if (maxFormLable != null)
                 {
                     maxFormLable.Text = "";
@@ -327,9 +338,10 @@ namespace VideoPlayer
                         try {
                             if (f.flag == 1)
                             {
-                                String url = f.endUrl;
-                                //MessageBox.Show(f.cookie);
-                                this.Play(url, f.cookie);
+                                this.playurl = f.endUrl;
+                                this.cookie = f.cookie;
+                                this.filename = "没名字...";
+                                this.Play();
                             }
                             else {
                                 MessageBox.Show(f.errorInfo);
@@ -384,6 +396,7 @@ namespace VideoPlayer
 
             if (_play.isScreen == false)
             {
+                Cursor.Hide();
                 //记录播放器尺寸位置
                 _play.position.Top = _Player.Top;
                 _play.position.Left = _Player.Left;
@@ -416,6 +429,7 @@ namespace VideoPlayer
             }
             else
             {
+                Cursor.Show();
                 _Player.Parent = this;
                 _Player.Dock = DockStyle.Fill;
                 _Player.BringToFront();
@@ -461,11 +475,8 @@ namespace VideoPlayer
             _play.VM_X = Control.MousePosition.X; //记录鼠标此刻位置
             _play.VM_Y = Control.MousePosition.Y;
             System.Threading.Thread.Sleep(300); //300毫秒后执行interval时钟事件
-        
         }
-
-
-
+        
         //以下具体设置 如APlayer.SetConfig()方法的用法请参见  开发文档chm
 
         /// <summary>
@@ -651,7 +662,6 @@ namespace VideoPlayer
 
         private void colorSlider2_MouseHover(object sender, EventArgs e)
         {
-
             tip.Show(TimeToString(TimeSpan.FromMilliseconds(colorSlider2.Value*10)), colorSlider2, 2000);
         }
 

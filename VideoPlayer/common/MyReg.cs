@@ -27,6 +27,7 @@ class MyReg
     public static String Reg_GetFirstString(String source, String regStr)
     {
         String[] list = Reg_GetAllString(source, regStr);
+        if (list == null) return null;
         return list[0];
     }
     public static String[] Reg_GetFirstMutiString(String source, String regStr)

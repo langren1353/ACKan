@@ -39,6 +39,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制名称ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制地址ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.快速导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ContextM_OutName = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextM_OutAddr = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
@@ -178,36 +181,56 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.复制名称ToolStripMenuItem,
             this.复制地址ToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.快速导出ToolStripMenuItem,
+            this.toolStripSeparator1,
             this.ContextM_OutName,
             this.ContextM_OutAddr});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 148);
             // 
             // 复制名称ToolStripMenuItem
             // 
             this.复制名称ToolStripMenuItem.Name = "复制名称ToolStripMenuItem";
-            this.复制名称ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.复制名称ToolStripMenuItem.Text = "复制-名称";
+            this.复制名称ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.复制名称ToolStripMenuItem.Text = "复制选中名称";
             this.复制名称ToolStripMenuItem.Click += new System.EventHandler(this.复制名称ToolStripMenuItem_Click);
             // 
             // 复制地址ToolStripMenuItem
             // 
             this.复制地址ToolStripMenuItem.Name = "复制地址ToolStripMenuItem";
-            this.复制地址ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.复制地址ToolStripMenuItem.Text = "复制-地址";
+            this.复制地址ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.复制地址ToolStripMenuItem.Text = "复制选中地址";
             this.复制地址ToolStripMenuItem.Click += new System.EventHandler(this.复制地址ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // 快速导出ToolStripMenuItem
+            // 
+            this.快速导出ToolStripMenuItem.Name = "快速导出ToolStripMenuItem";
+            this.快速导出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.快速导出ToolStripMenuItem.Text = "快速导出";
+            this.快速导出ToolStripMenuItem.Click += new System.EventHandler(this.快速导出ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // ContextM_OutName
             // 
             this.ContextM_OutName.Name = "ContextM_OutName";
-            this.ContextM_OutName.Size = new System.Drawing.Size(148, 22);
+            this.ContextM_OutName.Size = new System.Drawing.Size(152, 22);
             this.ContextM_OutName.Text = "导出选中名称";
             this.ContextM_OutName.Click += new System.EventHandler(this.ContextM_OutName_Click);
             // 
             // ContextM_OutAddr
             // 
             this.ContextM_OutAddr.Name = "ContextM_OutAddr";
-            this.ContextM_OutAddr.Size = new System.Drawing.Size(148, 22);
+            this.ContextM_OutAddr.Size = new System.Drawing.Size(152, 22);
             this.ContextM_OutAddr.Text = "导出选中地址";
             this.ContextM_OutAddr.Click += new System.EventHandler(this.ContextM_OutAddr_Click);
             // 
@@ -428,7 +451,7 @@
             this.CName.MinimumWidth = 190;
             this.CName.Name = "CName";
             this.CName.ReadOnly = true;
-            this.CName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.CName.Width = 190;
             // 
             // CAddr
@@ -626,6 +649,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CHot;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTime;
         private System.Windows.Forms.DataGridViewLinkColumn CPlay;
+        private System.Windows.Forms.ToolStripMenuItem 快速导出ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
